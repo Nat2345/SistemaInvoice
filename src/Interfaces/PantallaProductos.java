@@ -127,13 +127,13 @@ private JButton btnActualizar;
 		frmGestionProductos.getContentPane().add(lblValorPrecio);
 
 		sldPrecioVenta = new JSlider();
+		sldPrecioVenta.setMinimum(1);
 		sldPrecioVenta.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				lblValorPrecio.setText("$" + sldPrecioVenta.getValue());
 			}
 		});
 		sldPrecioVenta.setValue(1);
-		sldPrecioVenta.setMinimum(1);
 		sldPrecioVenta.setPaintTicks(true);
 		sldPrecioVenta.setPaintLabels(true);
 		sldPrecioVenta.setBounds(92, 128, 200, 26);
@@ -159,10 +159,12 @@ private JButton btnActualizar;
 					Productos p = new Productos(txtCodigoBarras.getText(), txtNombre.getText(),
 							sldPrecioVenta.getValue(), sldStock.getValue());
 					if (!p.insertarProducto()) {
+						cargarProductos();
 						JOptionPane.showMessageDialog(null, "ERROR AL INSERTAR", "ERROR",
 								JOptionPane.QUESTION_MESSAGE, redimensionar(32, 32, "/img/cecylogo.png"));
 					}else {
 						limpiar();
+						cargarProductos();
 						JOptionPane.showMessageDialog(null, "SE INSERTO CORRECTAMENTE", "EXITO",
 								JOptionPane.QUESTION_MESSAGE, redimensionar(32, 32, "/img/cecylogo.png"));
 					}
@@ -193,7 +195,6 @@ private JButton btnActualizar;
 		sldStock.setValue(1);
 		sldStock.setPaintTicks(true);
 		sldStock.setPaintLabels(true);
-		sldStock.setMinimum(1);
 		sldStock.setBounds(92, 171, 200, 26);
 		frmGestionProductos.getContentPane().add(sldStock);
 		
@@ -232,7 +233,7 @@ private JButton btnActualizar;
 					if(fila!=-1) {
 						int opcion = JOptionPane.showConfirmDialog(null, "ESTAS SEGURO DE ELIMINAR PRODUCTO?",
 								"ELIMINAR PRODUCTO", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-								redimensionar(32, 32, "/img/add.png"));
+								redimensionar(32, 32, "/img/cecylogo.png"));
 						
 						if(opcion==0) {
 							if(p.eliminarProducto()) {

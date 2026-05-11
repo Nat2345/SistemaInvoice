@@ -1,10 +1,13 @@
 package Entidades;
 
+import Data.DataDetalleVentas;
+
 public class DetalleVentas {
 	int idDetalle;
 	int idVenta;
 	int idProducto;
 	int cantidad;
+	DataDetalleVentas ddv= new DataDetalleVentas();
 	
 	public DetalleVentas() {
 		super();
@@ -41,4 +44,8 @@ public class DetalleVentas {
 		this.cantidad = cantidad;
 	}
 
+	
+	public boolean insertarDetalleVenta() {
+		return ddv.insertarProducto(this);
+	}
 }
